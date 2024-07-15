@@ -9,21 +9,27 @@
     </div>
 </template>
 <script>
+import { ref } from 'vue'
     export default{
-        data(){
-            return{
-               editClass : ''
-            }
-        },
         props : ['data' , 'deleteFnt'],
-        methods : {
-            handleDelete (){
-                this.deleteFnt(this.data)
-            },
-            handleComplete (){
-                this.editClass = 'task-completed'
+        
+        setup({ data , deleteFnt }){
+
+            const editClass = ref('')
+            console.log('del',deleteFnt)
+            console.log('add',handleComplete)
+
+            function handleComplete (){
+                editClass.value = 'task-completed'
+            }
+            function handleDelete (){
+                    deleteFnt(data)
+            }
+            return{
+                handleDelete , handleComplete , editClass
             }
         }
+        
         
     }
 </script>

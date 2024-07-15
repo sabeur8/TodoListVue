@@ -17,32 +17,37 @@
 </template>
 
 <script>
+import { ref } from 'vue'
 
 import Todo from './Todo.vue'
     
 export default{
-        data(){
+        setup(){
+            const todos = ref(['haircut', 'mearn javaScript', 'watch movie'])
+            const newTodo = ref('')
+
+            function handleAdd(){
+                
+                todos.value.push(newTodo.value)
+            }
+            function handlDelete (item) {
+                console.log('delete')
+                todos.value = todos.value.filter(
+                    (element) => (item != element )
+                )
+            }
+            
             return{
-                todos : ['haircut', 'mearn javaScript', 'watch movie'],
-                newTodo : '',
+                handleAdd , handlDelete , todos , newTodo
             }
         },
         components : {
             Todo
-        },
-        methods : {
-            handleAdd(){
-                this.todos.push(this.newTodo)
-                this.filtred = false
-            },
-            handlDelete (item) {
-                this.todos = this.todos.filter(
-                    (element) => (item != element )
-                )
-            }
         }
     }
 </script>
+
+
 <style>
 body {
     font-family: Arial, sans-serif;
