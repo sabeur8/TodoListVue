@@ -16,34 +16,20 @@
     </div>
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue'
-
 import Todo from './Todo.vue'
-    
-export default{
-        setup(){
-            const todos = ref(['haircut', 'mearn javaScript', 'watch movie'])
-            const newTodo = ref('')
 
-            function handleAdd(){
-                
-                todos.value.push(newTodo.value)
-            }
-            function handlDelete (item) {
-                console.log('delete')
-                todos.value = todos.value.filter(
-                    (element) => (item != element )
-                )
-            }
-            
-            return{
-                handleAdd , handlDelete , todos , newTodo
-            }
-        },
-        components : {
-            Todo
-        }
+const todos = ref(['haircut', 'mearn javaScript', 'watch movie'])
+const newTodo = ref('')
+
+function handleAdd(){
+    todos.value.push(newTodo.value)
+    }
+function handlDelete (item) {
+    todos.value = todos.value.filter(
+        (element) => (item != element )
+        )
     }
 </script>
 

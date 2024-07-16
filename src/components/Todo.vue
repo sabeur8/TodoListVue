@@ -1,38 +1,27 @@
 <template>
     <div>
         <li class="task">
-            <span :class="editClass">{{data}}</span>
+            <span :class="editClass">{{props.data}}</span>
             <button class="delete-btn" @click="handleDelete">🗑️</button>
-            <button class="edit-btn" @click="handleComplete" >  ✏️</button>
         </li>
-        
+        <button class="edit-btn" @click="handleComplete" >  ✏️</button>
     </div>
 </template>
-<script>
+<script setup>
+
 import { ref } from 'vue'
-    export default{
-        props : ['data' , 'deleteFnt'],
-        
-        setup({ data , deleteFnt }){
+    
+const props = defineProps (['data' , 'deleteFnt'])
+const editClass = ref('')
 
-            const editClass = ref('')
-            console.log('del',deleteFnt)
-            console.log('add',handleComplete)
-
-            function handleComplete (){
-                editClass.value = 'task-completed'
-            }
-            function handleDelete (){
-                    deleteFnt(data)
-            }
-            return{
-                handleDelete , handleComplete , editClass
-            }
-        }
-        
-        
-    }
+function handleComplete (){
+    editClass.value = 'task-completed'
+}
+function handleDelete (){
+    props.deleteFnt(props.data)
+}
 </script>
+
 <style>
 .task {
     display: flex;
